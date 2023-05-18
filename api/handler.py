@@ -41,6 +41,7 @@ def healthinsurance_predict():
         #prediction
         df_response = pipeline.get_prediction(model, test_raw, df4)
         
+        print(df4)
 
         return df_response
     
