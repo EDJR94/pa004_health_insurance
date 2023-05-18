@@ -1,11 +1,11 @@
 import pickle
 import pandas as pd
+import os
 from flask import Flask, request, Response
 from healthinsurance.HealthInsurance import HealthInsurance
 
 #loading model
-path = 'C:/Users/edils/repos/pa004_health_insurance/'
-model = pickle.load(open(path + 'src/models/model_lgb.pkl','rb'))
+model = pickle.load(open(path + 'models/model_lgb.pkl','rb'))
 
 #Initiate API
 app = Flask(__name__)
@@ -29,6 +29,8 @@ def healthinsurance_predict():
         #Data Description
         df1 = pipeline.rename_columns(test_raw)
 
+        print(test_raw)
+
         #Data Transformation
         df2 = pipeline.rename_categorical(df1)
 
@@ -46,6 +48,11 @@ def healthinsurance_predict():
     
     else:
         return Response('{}', status=200, mimetype='application/json')
+    
+#Usar isso para testar na maquina
+#if __name__ == '__main__':
+    #app.run('0.0.0.0', debug=True)
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', debug=True)
+    port = os.environ.get('PORT', 5000)
+    app.run(host='0.0.0.0', port=port)

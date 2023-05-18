@@ -14,14 +14,15 @@ class HealthInsurance:
         self.vintage_scaler                       = pickle.load(open(self.home_path + 'src/features/vintage_scaler.pkl', 'rb'))        
         
     def rename_columns(self, df1):
-        cols_old = df1.columns
+        df2 = df1.copy()
+        cols_old = df2.columns
 
         cols_new = []
         cols_new = cols_old.map(lambda x: inflection.underscore(x))
 
-        df1.columns = cols_new
+        df2.columns = cols_new
 
-        return df1
+        return df2
     
     def rename_categorical(self, df2):
 
@@ -68,7 +69,7 @@ class HealthInsurance:
         #vintage
         df5['vintage'] = self.vintage_scaler.transform(df5['vintage'].values.reshape(-1,1))
         #pickle.dump(mms, open('C:/Users/edils/repos/pa004_health_insurance/src/features/vintage_scaler.pkl', 'wb'))
-
+    
         cols_selected = {'vintage',
                          'annual_premium',
                          'age',
@@ -78,13 +79,18 @@ class HealthInsurance:
                          'previously_insured',
                          'vehicle_age',
                          'gender'}
-    
-        return df5[cols_selected]
+        
+        df5 = df5.loc[:,cols_selected]
+
+        return df5      
+              
 
     def get_prediction(self, model, original_data, test_data):
         
         yhat = model.predict_proba(test_data)
+
+        print(yhat[:,1].sum())
         
-        original_data['prediction'] = yhat[:,1]
+        original_data['Prediction'] = yhat[:,1]
         
         return original_data.to_json(orient='records', date_format='iso')
