@@ -14,15 +14,14 @@ class HealthInsurance:
         self.vintage_scaler                       = pickle.load(open(self.home_path + 'features/vintage_scaler.pkl', 'rb'))        
         
     def rename_columns(self, df1):
-        df2 = df1.copy()
-        cols_old = df2.columns
+        cols_old = df1.columns
 
         cols_new = []
         cols_new = cols_old.map(lambda x: inflection.underscore(x))
 
-        df2.columns = cols_new
+        df1.columns = cols_new
 
-        return df2
+        return df1
     
     def rename_categorical(self, df2):
 
@@ -45,12 +44,9 @@ class HealthInsurance:
 
         #region_code - Frequency Encoding
         df5['region_code'] = df5['region_code'].map(self.fe_region_code_scaler)
-        #pickle.dump(fe_region_code, open('C:/Users/edils/repos/pa004_health_insurance/src/features/fe_region_code_scaler.pkl','wb'))
 
-        #policy_sales_channel'
-        df5['policy_sales_channel'] = df5['policy_sales_channel'].map(self.fe_policy_sales_channel_scaler)
-        #pickle.dump(fe_policy_sales_channel, open('C:/Users/edils/repos/pa004_health_insurance/src/features/fe_policy_sales_channel_scaler.pkl', 'wb'))
-    
+        #policy_sales_channel
+        df5['policy_sales_channel'] = df5['policy_sales_channel'].map(self.fe_policy_sales_channel_scaler)    
     
         return df5
 
@@ -58,18 +54,15 @@ class HealthInsurance:
 
         #age 
         df5['age'] = self.age_scaler.transform(df5['age'].values.reshape(-1,1))
-        #pickle.dump(mms, open('C:/Users/edils/repos/pa004_health_insurance/src/features/age_scaler.pkl', 'wb'))
 
 
         #annual_premium
         df5['annual_premium'] = self.annual_premium_scaler.transform(df5['annual_premium'].values.reshape(-1,1))
-        #pickle.dump(rb, open('C:/Users/edils/repos/pa004_health_insurance/src/features/annual_premium_scaler.pkl', 'wb'))
 
 
         #vintage
         df5['vintage'] = self.vintage_scaler.transform(df5['vintage'].values.reshape(-1,1))
-        #pickle.dump(mms, open('C:/Users/edils/repos/pa004_health_insurance/src/features/vintage_scaler.pkl', 'wb'))
-    
+        
         cols_selected = {'vintage',
                          'annual_premium',
                          'age',
@@ -79,17 +72,13 @@ class HealthInsurance:
                          'previously_insured',
                          'vehicle_age',
                          'gender'}
-        
-        df5 = df5.loc[:,cols_selected]
 
-        return df5      
-              
+        return df5[cols_selected]
+                  
 
     def get_prediction(self, model, original_data, test_data):
         
         yhat = model.predict_proba(test_data)
-
-        print(yhat[:,1].sum())
         
         original_data['Prediction'] = yhat[:,1]
         
