@@ -34,7 +34,7 @@ class HealthInsurance:
 
         #Renaming gender #Male = 1, Female = 0
         df2['gender'] = df2['gender'].apply(lambda x: 1 if x=='Male' else 0)
-
+    
         return df2
 
     def data_encoding(self, df5):
@@ -44,24 +44,29 @@ class HealthInsurance:
 
         #region_code - Frequency Encoding
         df5['region_code'] = df5['region_code'].map(self.fe_region_code_scaler)
+        #pickle.dump(fe_region_code, open('C:/Users/edils/repos/pa004_health_insurance/src/features/fe_region_code_scaler.pkl','wb'))
 
         #policy_sales_channel
-        df5['policy_sales_channel'] = df5['policy_sales_channel'].map(self.fe_policy_sales_channel_scaler)    
-    
-        return df5
+        df5['policy_sales_channel'] = df5['policy_sales_channel'].map(self.fe_policy_sales_channel_scaler)
+        #pickle.dump(fe_policy_sales_channel, open('C:/Users/edils/repos/pa004_health_insurance/src/features/fe_policy_sales_channel_scaler.pkl', 'wb'))
 
+        return df5
+        
     def data_rescalling(self, df5):
 
         #age 
         df5['age'] = self.age_scaler.transform(df5['age'].values.reshape(-1,1))
+        #pickle.dump(mms, open('C:/Users/edils/repos/pa004_health_insurance/src/features/age_scaler.pkl', 'wb'))
 
 
         #annual_premium
         df5['annual_premium'] = self.annual_premium_scaler.transform(df5['annual_premium'].values.reshape(-1,1))
+        #pickle.dump(rb, open('C:/Users/edils/repos/pa004_health_insurance/src/features/annual_premium_scaler.pkl', 'wb'))
 
 
         #vintage
         df5['vintage'] = self.vintage_scaler.transform(df5['vintage'].values.reshape(-1,1))
+        #pickle.dump(mms, open('C:/Users/edils/repos/pa004_health_insurance/src/features/vintage_scaler.pkl', 'wb'))
         
         cols_selected = {'vintage',
                          'annual_premium',
