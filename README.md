@@ -67,11 +67,11 @@ Dentre todas as hipóteses as **mais relevantes(Insights)** na minha opinião fo
     ![Untitled](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/cf866d2a-d9cd-41be-b05b-c22459c7404e)
 
     
-2. **Pessoas que já tinham seguros anteriormente tendem a querer o seguro, pois já têm experiência.**
+2. **Pessoas mais jovens geralmente não querem adquirir o seguro.**
     
-    Na verdade, praticamente todos que não tinham seguro antes(barra azul à esquerda) têm interesse no seguro de carro, enquanto os que já possuem seguros (barra à direita) não têm interesse.
+    Essa hipótese é verdadeira, mas gostaria de destacar que as idades que têm uma procura muito maior que as outras ficam entre 40-50 anos, como podemos ver no gráfico abaixo:
     
-    ![Untitled (1)](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/d20ecb48-8ef2-49f8-ac27-d84e2ff6eb05)
+    ![image](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/ad861d37-b944-4391-8a2c-4957a73ac806)
 
     
 
