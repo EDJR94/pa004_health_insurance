@@ -1,83 +1,80 @@
 # Health Insurance Cross Sell Project
 ![image](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/3e1559a5-7153-457f-a092-cac66c713a11)
 
-## 01. Problema de Negócio
+## 01. Business Problem
 
-Nosso cliente é uma empresa de seguros que forneceu seguros de saúde aos seus clientes e agora precisa de ajuda para construir um modelo que preveja se os seus clientes segurados do ano passado também estariam interessados em um seguro de veículos fornecido pela empresa.
+Our client is an insurance company that has provided health insurance to its customers and now needs help building a model to predict whether its insured customers from the previous year would also be interested in a vehicle insurance provided by the company.
 
-Construir um modelo para prever se um cliente estaria interessado em um seguro de veículos seria extremamente útil para a empresa, pois ela pode planejar sua estratégia de comunicação de acordo buscando alcançar esses clientes que tem mais interesse, e assim otimizar seu negócio e reduzir custos.
+Building a model to predict whether a customer would be interested in vehicle insurance would be extremely useful for the company, as it can plan its communication strategy accordingly to target these more interested customers, thereby optimizing its business and reducing costs.
 
-## 02. Premissas
+## 02. Assumptions
 
-- As variáveis/atributos originais (e seus significados) do conjunto de dados são:
+- The original variables/attributes (and their meanings) of the dataset are:
 
-| Coluna | Descrição |
-| --- | --- |
-| id | ID único para cada cliente |
-| gender | Gênero do Cliente |
-| age | Idade do Cliente |
-| region_code | Código da região em que o cliente mora |
-| policy_sales_channel | Código do canal de contato escolhido pelo cliente |
-| driving_license | O Cliente possui carteira de motorista? |
-| vehicle_age | Idade do carro do Cliente |
-| vehicle_damage | O carro já foi danificado alguma vez? |
-| previously_insured | O Cliente já foi segurado alguma vez? |
-| annual_premium | Valor do prêmio Anual(para seguro de saúde) |
-| vintage | Quantos dias faz que o Cliente possui o seguro de saúde? |
-| response | O cliente estaria interessado em um seguro de carro? |
+| Column | Description |
+| ------ | ----------- |
+| id | Unique ID for each customer |
+| gender | Customer's gender |
+| age | Customer's age |
+| region_code | Region code where the customer lives |
+| policy_sales_channel | Code of the contact channel chosen by the customer |
+| driving_license | Does the customer have a driver's license? |
+| vehicle_age | Age of the customer's vehicle |
+| vehicle_damage | Has the vehicle been damaged before? |
+| previously_insured | Has the customer been insured before? |
+| annual_premium | Annual premium amount (for health insurance) |
+| vintage | Number of days the customer has had health insurance |
+| response | Would the customer be interested in vehicle insurance? |
 
-## 03. Estratégias de Solução
+## 03. Solution Strategy
 
-A estratégia utilizada foi o método CRISP, dividido em 10 partes:
+The strategy used was the CRISP method, divided into 10 parts:
 
-![crisp](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/67b3ae4f-ea88-42e9-9cb4-43eee51cec4a)
+![CRISP Method](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/67b3ae4f-ea88-42e9-9cb4-43eee51cec4a)
 
-1. Questão de Negócio apresentada.
-2. Entendimento do Negócio da Empresa de Seguros.
-3. Coleta de Dados.
-4. Limpeza de Dados.
-5. Exploração de Dados.
-6. Modelagem dos Dados.
-7. Utilização de Modelos de Machine Learning.
-8. Avaliação do Algoritmo de Machine Learning.
-9. Deploy do Modelo em Produção.
-10. Enviar a predição feita e ordená-la usando Google Sheets.
+1. Business question presented.
+2. Understanding the Insurance Company's Business.
+3. Data Collection.
+4. Data Cleaning.
+5. Data Exploration.
+6. Data Modeling.
+7. Use of Machine Learning Models.
+8. Evaluation of Machine Learning Algorithm.
+9. Model Deployment in Production.
+10. Send the prediction and rank it using Google Sheets.
 
-## 04. Melhores Insights do Negócio
+## 04. Key Business Insights
 
-Foram levantadas as seguintes hipóteses de negócio de acordo com como funcionava o negócio da Empresa:
+The following business hypotheses were raised based on how the company's business worked:
 
-1. Pessoas que já possuem um seguro de saúde podem estar mais inclinadas a adquirir um seguro de veículo, pois já têm experiência com seguros.
-2. Clientes que possuem um histórico de acidentes de carro podem estar mais interessados em um seguro de veículo.
-3. Clientes que possuem um carro mais novo são mais prováveis de adquirirem o seguro.
-4. A idade do cliente pode ser um fator importante, com os clientes mais jovens sendo menos propensos a adquirir um seguro de veículo.
-5. A localização geográfica dos clientes pode ser um fator importante, com as pessoas que moram em áreas com altos índices de roubos de veículos sendo mais propensas a adquirir um seguro de veículo.
-6. O gênero do cliente pode ser um fator, com homens sendo mais propensos a adquirir um seguro de veículo.
-7. O preço do seguro de veículo pode ser um fator importante, com clientes mais propensos a adquirir um seguro de veículo se os preços estiverem competitivos.
-8. Clientes com CNH são mais propensos a adquirirem o seguro.
-9. Pessoas que já tinham seguros anteriormente tendem a querer o seguro, pois já têm experiência.
-10. Pessoas que são notificadas por algum meio específico(ex: telefone) podem tender a querer o seguro
+1. People who already have health insurance may be more inclined to purchase vehicle insurance, as they already have experience with insurance.
+2. Customers with a history of car accidents may be more interested in vehicle insurance.
+3. Customers with newer vehicles are more likely to purchase insurance.
+4. Customer age may be an important factor, with younger customers being less likely to acquire vehicle insurance.
+5. The geographic location of customers may be important, with people living in areas with high vehicle theft rates being more likely to acquire vehicle insurance.
+6. Customer gender may be a factor, with men being more likely to acquire vehicle insurance.
+7. The price of vehicle insurance may be an important factor, with customers more likely to acquire vehicle insurance if the prices are competitive.
+8. Customers with driver's licenses are more likely to acquire insurance.
+9. People who have had insurance before are more likely to want insurance, as they already have experience.
+10. People notified through a specific means (e.g., phone) may tend to want insurance.
 
-Dentre todas as hipóteses as **mais relevantes(Insights)** na minha opinião foram as seguintes:
+Among all the hypotheses, the **most relevant insights** in my opinion were the following:
 
-1. **Clientes que possuem um carro mais novo são mais prováveis de adquirirem o seguro.**
-    
-    Podemos ver pelo gráfico que a maioria dos clientes que estariam interessados são clientes com carro usado (Entre 1 e 2 anos de uso) e não carros novos (Menos de 1 ano de uso)
-    
-    ![Untitled](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/cf866d2a-d9cd-41be-b05b-c22459c7404e)
+1. **Customers with newer vehicles are more likely to purchase insurance.**
 
-    
-2. **Pessoas mais jovens geralmente não querem adquirir o seguro.**
-    
-    Essa hipótese é verdadeira, mas gostaria de destacar que as idades que têm uma procura muito maior que as outras ficam entre 40-50 anos, como podemos ver no gráfico abaixo:
-    
-    ![image](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/ad861d37-b944-4391-8a2c-4957a73ac806)
+   We can see from the graph that most customers who would be interested are customers with used cars (1 to 2 years old) rather than new cars (less than 1 year old).
 
-    
+   ![Car Age Graph](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/cf866d2a-d9cd-41be-b05b-c22459c7404e)
+
+2. **Younger people generally do not want to acquire insurance.**
+
+   This hypothesis is true, but I would like to highlight that the ages with much higher demand than others are between 40-50 years, as shown in the graph below:
+
+   ![Age vs Interest Graph](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/ad861d37-b944-4391-8a2c-4957a73ac806)
 
 ## 05. Machine Learning
 
-Foram usados os seguintes modelos de Machine Learning para analisar a previsão das vendas:
+The following Machine Learning models were used to analyze sales prediction:
 
 - *LogisticRegression*
 - *Dummy Classifier*
@@ -85,60 +82,49 @@ Foram usados os seguintes modelos de Machine Learning para analisar a previsão 
 - *XGB Classifier*
 - *Light GBM Classifier*
 
-Após analisar as métricas (Precision, Recall, F1 Score, Accuracy ROC AUC Curve) optei por seguir com o *Light GBM Classifier* pois foi o que apresentou as melhores métricas no geral:
+After analyzing the metrics (Precision, Recall, F1 Score, Accuracy, ROC AUC Curve), I chose to proceed with the *Light GBM Classifier* as it had the best overall metrics:
 
-| Model Name | Precisão at K | Recall at K | F1 at K | Acurácia at K | ROC AUC at K |
-| --- | --- | --- | --- | --- | --- |
-| Light GBM | 0.40900 | 0.218483 | 0.284819 | 0.876824 | 0.856095 |
-| XGBoost Classifier | 0.39350 | 0.210203 | 0.274025 | 0.876250 | 0.854232 |
-| Random Forest | 0.34600 | 0.184829 | 0.240947 | 0.866657 | 0.831897 |
-| Logistic Regression | 0.31175 | 0.166533 | 0.217096 | 0.877185 | 0.833658 |
-| Dummy Classifier | 0.12425 | 0.066373 | 0.086525 | 0.877202 | 0.500000 |
-
-O modelo Final, após ajustado os hiperparâmetros, treinado e aplicado sobre os dados de Teste(nunca vistos pelo modelo) teve a seguinte performance:
-
-| Model Name | Precisão at K | Recall at K | F1 at K | Acurácia at K | ROC AUC at K |
+| Model Name | Precision at K | Recall at K | F1 at K | Accuracy at K | ROC AUC at K |
 | --- | --- | --- | --- | --- | --- |
 | Light GBM | 0.44225 | 0.185761 | 0.261628 | 0.875312 | 0.861079 |
 
-## 06. Tradução do Modelo para o Negócio
+## 06. Translating the Model to Business
 
-A partir das previsões feitas pelo modelo podemos tirar algumas conclusões. 
+From the predictions made by the model, we can draw some conclusions.
 
-Considerando-se que para cada cliente que a empresa consiga vender o seguro de carro ela tenho um Lucro Bruto de R$540,00. Vamos considerar também que a empresa pretende ligar para esses potenciais clientes e cada ligação tenha um custo total de R$40,00.
+Assuming that for each customer the company can sell vehicle insurance to, it has a Gross Profit of $540. Let's also consider that the company intends to call these potential customers, and each call has a total cost of $40.
 
-Observado o gráfico abaixo, os primeiros clientes são os com a maior probalidade de aceitarem o seguro de carro. Porém chega um momento que a empresa começa a ligar para os clientes que não têm uma chance muito alta de comprar o seguro e o custo começa a se destacar e diminuir o lucro.
+Looking at the graph below, the initial customers are those with the highest probability of accepting vehicle insurance. However, there comes a point where the company starts calling customers who do not have a very high chance of purchasing insurance, and the cost starts to stand out, reducing the profit.
 
-![Untitled (2)](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/f9e0c2bd-b3e9-48eb-aa9a-c4d4602311d6)
+![Profit Curve Graph](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/f9e0c2bd-b3e9-48eb-aa9a-c4d4602311d6)
 
+In other words, the company needs to call 46% of the customer base (those with the highest probability of accepting insurance) to maximize profit:
 
-Ou seja, a empresa precisa ligar para 46% da base de clientes(que são os que tem a maior probabilidade de aceitar o seguro) para ter o lucro máximo:
+→ Profit by calling up to customer 35103: $3,429,452.90
 
-→ Lucro ligando até o cliente 35103: R$3.429.452,90
+→ Profit by calling the entire customer base: $1,962,802.77
 
-→ Lucro Ligando para a base toda de clientes: R$1.962.802,77
+This is a profit 1.74 times higher using the model.
 
-É um lucro 1.74 vezes maior usando o modelo.
+## 06. Google Sheets Spreadsheet
 
-## 06. Planilha do Google Sheets
+After deploying the model to production, I created a Google Sheets spreadsheet that, given customer information, accesses my cloud-based model, makes predictions, and returns a ranked list of the best customers to call at the top of the list, as shown in the example below:
 
-Após enviar o modelo para produção, fiz uma planilha no Google Sheets que, dado as informações do cliente, acessa meu modelo na Nuvem, faz as predições e retorna uma lista rankeada com os melhores clientes para ligar no topo da lista, como no exemplo a seguir:
+![Google Sheets Spreadsheet GIF](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/ccd6c55c-b610-43aa-9d82-cc5bca362591)
 
-![gif google sheets](https://github.com/EDJR94/pa004_health_insurance/assets/128603807/ccd6c55c-b610-43aa-9d82-cc5bca362591)
+## 07. Final Product and Conclusion
 
-## 07. Produto Final e Conclusão
+The final product was a Google Sheets spreadsheet that predicts and ranks customers who are most likely to acquire vehicle insurance, allowing the insurance company to contact only potential customers. This spreadsheet can be accessed from any device with internet access that has the Google Sheets application.
 
-O produto final foi uma planilha no Google Sheets que faz a previsão e ordena os clientes que tem a maior probabilidade de adquirir o seguro de carro para que a empresa de seguros entre em contato apenas com os potenciais clientes. Essa planilha pode ser acessada de qualquer dispositivo com acesso à internet que possua o aplicativo do Google Sheets.
+## 08. Next Steps
 
-## 08. Próximos Passos
+Continue with additional CRISP cycles, focusing on:
 
-Realizar mais Ciclos do CRISP focando em:
+- Testing other Machine Learning models / Fine-tuning parameters to further refine the model.
+- Creating additional features for the model from existing data.
+- Exploring alternative strategies for defining model hyperparameters.
+- Optimizing the model to make predictions and rank customers in Excel.
 
-- Testar outros modelos de Machine Learning/Aperfeiçoar os parâmetros para refinar o modelo;
-- Criar outras características(features) para o modelo a partir dos dados existentes;
-- Utilizas outras estratégias para definir os Hyperparâmetros do modelo;
-- Otimizar o modelo para fazer a previsão e ordenar as clientes no Excel.
+## References
 
-## Referências
-
-Conjunto de dados: [https://www.kaggle.com/datasets/anmolkumar/health-insurance-cross-sell-prediction](https://www.kaggle.com/datasets/anmolkumar/health-insurance-cross-sell-prediction)
+Dataset: [https://www.kaggle.com/datasets/anmolkumar/health-insurance-cross-sell-prediction](https://www.kaggle.com/datasets/anmolkumar/health-insurance-cross-sell-prediction)
